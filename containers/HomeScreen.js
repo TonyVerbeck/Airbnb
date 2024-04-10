@@ -7,6 +7,7 @@ import {
   Pressable,
   StyleSheet,
   FlatList,
+  Image,
 } from "react-native";
 import axios from "axios";
 
@@ -42,10 +43,8 @@ const Home = ({ setToken }) => {
               <Text>
                 {item.title} - {item.price}€ - {item.ratingValue}
               </Text>
-
               <Image
-                key={item.photos.picture_id}
-                source={{ uri: item.url }}
+                source={{ uri: item.photos.url }}
                 style={{ width: 200, height: 200 }}
               />
             </View>
