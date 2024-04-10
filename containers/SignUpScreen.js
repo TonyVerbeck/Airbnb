@@ -40,7 +40,7 @@ const SignUp = ({ setToken }) => {
           const userToken = response.data.token;
           await AsyncStorage.setItem("userToken", userToken);
 
-          navigation.navigate("Home");
+          navigation.navigate("Tab", { screen: "TabHome" });
           setToken(userToken);
         } catch (error) {
           console.log(error.response.data);

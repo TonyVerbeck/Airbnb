@@ -17,24 +17,24 @@ import airbnb from "../assets/airbnb-logo.png";
 
 const SignIn = ({ setToken }) => {
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigation = useNavigation();
 
   const handleSubmit = async () => {
-    if (password && username) {
+    if (password && email) {
       try {
         const response = await axios.post(
           "https://lereacteur-bootcamp-api.herokuapp.com/api/airbnb/user/log_in",
           {
-            username: username,
+            email: email,
             password: password,
           }
         );
         const userToken = response.data.token;
         await AsyncStorage.setItem("userToken", userToken);
 
-        navigation.navigate("Home");
+        navigation.navigate("Tab", { screen: "TabHome" });
         setToken(userToken);
       } catch (error) {
         console.log(error);
@@ -61,9 +61,9 @@ const SignIn = ({ setToken }) => {
       <View style={styles.form}>
         <TextInput
           style={styles.input}
-          placeholder="Username"
-          value={username}
-          onChangeText={setUsername}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
         />
         <TextInput
           style={styles.input}
